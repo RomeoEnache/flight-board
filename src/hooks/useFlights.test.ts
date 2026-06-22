@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { act, renderHook } from "@testing-library/react";
 import { useFlights } from "./useFlights";
-import { RefreshStatus } from "./refreshStatus";
+import { RefreshStatus } from "../domain/refreshStatus";
 import type { Flight } from "../domain/flight";
 import { aFlight } from "../test/factories";
 

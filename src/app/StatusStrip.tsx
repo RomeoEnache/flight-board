@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { RefreshStatus } from "../hooks/refreshStatus";
+import { RefreshStatus } from "../domain/refreshStatus";
 import { formatClockTime } from "../utils/date";
 
 // TODO: consider moving this to a more appropriate location, e.g. src/domain/refreshStatus.ts

@@ -1,6 +1,6 @@
 import { FlightBoard } from "../board/FlightBoard";
 import { fetchFlights } from "../api/fetchFlights";
-import { RefreshStatus } from "../hooks/refreshStatus";
+import { RefreshStatus } from "../domain/refreshStatus";
 import { useFlights } from "../hooks/useFlights";
 import { StatusStrip } from "./StatusStrip";
 import { ForceFailureToggle } from "../dev/ForceFailureToggle";

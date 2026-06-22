@@ -1,5 +1,5 @@
 import { fetchFlights, type FlightLoader } from "../api/fetchFlights";
-import { deriveRefreshStatus } from "./refreshStatus";
+import { deriveRefreshStatus } from "../domain/refreshStatus";
 import { usePolledData } from "./usePolledData";
 
 const REFRESH_INTERVAL = 30_000;
