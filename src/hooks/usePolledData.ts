@@ -11,6 +11,11 @@ export function usePolledData<T>(
   const [isRefreshing, setIsRefreshing] = useState(true);
   const [lastRefreshFailed, setLastRefreshFailed] = useState(false);
 
+  const fetchDataRef = useRef(fetchData);
+  useEffect(() => {
+    fetchDataRef.current = fetchData;
+  }, [fetchData]);
+
   const abortControllerRef = useRef<AbortController | undefined>(undefined);
   const refreshTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
@@ -30,7 +35,7 @@ export function usePolledData<T>(
 
     setIsRefreshing(true);
     try {
-      const result = await fetchData({ signal });
+      const result = await fetchDataRef.current({ signal });
       if (signal.aborted) return;
 
       setData(result);
@@ -46,7 +51,7 @@ export function usePolledData<T>(
         refreshTimerRef.current = setTimeout(refresh, refreshInterval);
       }
     }
-  }, [cleanup, fetchData, refreshInterval]);
+  }, [cleanup, refreshInterval]);
 
   useEffect(() => {
     refresh();
