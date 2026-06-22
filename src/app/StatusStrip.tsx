@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { RefreshStatus } from "../domain/refreshStatus";
 import { formatClockTime } from "../utils/date";
 
-// TODO: consider moving this to a more appropriate location, e.g. src/domain/refreshStatus.ts
 const REFRESH_STATUS_PRESENTATION: Record<
   RefreshStatus,
   { label: string; tone: "ok" | "warn" | "danger" | "accent" }
