@@ -1,0 +1,282 @@
+:root {
+  --color-page: #0b1120;
+  --color-surface: #101827;
+  --color-surface-raised: #182235;
+  --color-border: #334155;
+  --color-text: #f8fafc;
+  --color-muted: #94a3b8;
+  --color-accent: #38bdf8;
+  --color-accent-contrast: #06111f;
+  --color-success: #4ade80;
+  --color-warning: #facc15;
+  --color-danger: #f87171;
+
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --space-1: 0.25rem;
+  --space-2: 0.375rem;
+  --space-3: 0.5rem;
+  --space-4: 0.625rem;
+  --space-5: 0.75rem;
+  --space-6: 0.875rem;
+  --space-7: 1rem;
+  --space-8: 1.125rem;
+  --space-9: 2.25rem;
+  --space-page: 3rem;
+
+  --border-width: 0.0625rem;
+  --border-width-strong: 0.125rem;
+  --radius-control: 0.3125rem;
+  --radius-panel: 0.5rem;
+  --radius-pill: 999rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-page);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+button,
+input {
+  font: inherit;
+
+  &:focus-visible {
+    outline: var(--border-width-strong) solid var(--color-accent);
+    outline-offset: var(--space-1);
+  }
+}
+
+button {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  font-weight: 700;
+
+  &:hover {
+    border-color: var(--color-accent);
+  }
+
+  &[data-selected="true"] {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+  }
+}
+
+[data-tone="accent"] {
+  color: var(--color-accent);
+}
+
+[data-tone="ok"] {
+  color: var(--color-success);
+}
+
+[data-tone="warn"] {
+  color: var(--color-warning);
+}
+
+[data-tone="danger"] {
+  color: var(--color-danger);
+}
+
+.app-shell {
+  padding: var(--space-page);
+}
+
+.status-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-8);
+  border-bottom: var(--border-width-strong) solid var(--color-border);
+
+  & h1 {
+    margin: 0;
+    font-size: 2.25rem;
+    text-transform: uppercase;
+  }
+
+  & .status-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  & .refresh-status,
+  & .force-failure-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-pill);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  & .force-failure-toggle {
+    color: var(--color-muted);
+  }
+
+  & .refresh-status-dot {
+    width: var(--space-3);
+    height: var(--space-3);
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  & .last-updated {
+    color: var(--color-muted);
+
+    & time {
+      color: var(--color-accent);
+    }
+  }
+}
+
+.filter-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+
+.initial-state,
+.empty-board {
+  margin: var(--space-7) 0 0;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-panel);
+  padding: var(--space-9) var(--space-7);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.initial-state h2 {
+  margin: 0 0 var(--space-3);
+}
+
+.initial-state-error {
+  color: var(--color-danger);
+}
+
+.empty-board {
+  color: var(--color-muted);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(28.75rem, 100%), 1fr));
+  gap: var(--space-5);
+  align-items: start;
+  margin-top: var(--space-7);
+
+  & .group {
+    overflow: hidden;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-panel);
+    background: var(--color-surface);
+  }
+
+  & .group-heading {
+    margin: 0;
+    padding: var(--space-3) var(--space-6);
+    background: var(--color-surface-raised);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+  }
+
+  /* Columns: time, flight, destination, terminal, gate, status. */
+  & .column-captions,
+  & .row {
+    display: grid;
+    grid-template-columns: 3.2rem 3.8rem minmax(8rem, 1fr) 3.8rem 3.2rem 5.6rem;
+    gap: var(--space-3);
+    align-items: center;
+    padding: var(--space-2) var(--space-5);
+  }
+
+  & .column-captions {
+    background: var(--color-surface-raised);
+    color: var(--color-muted);
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+
+    & + .row {
+      border-top: 0;
+    }
+  }
+
+  & .row {
+    border-top: var(--border-width) solid var(--color-border);
+    font-size: 0.84rem;
+
+    &[data-status="Cancelled"] {
+      & .flight-destination,
+      & .flight-time,
+      & .flight-terminal,
+      & .flight-gate {
+        color: var(--color-muted);
+      }
+    }
+  }
+
+  & .cell-terminal,
+  & .cell-gate,
+  & .flight-terminal,
+  & .flight-gate {
+    justify-self: center;
+    text-align: center;
+  }
+
+  & .cell-status,
+  & .flight-status {
+    justify-self: end;
+    text-align: right;
+  }
+
+  & .flight-time,
+  & .flight-number,
+  & .flight-gate {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  & .flight-time,
+  & .flight-number,
+  & .flight-terminal,
+  & .flight-destination,
+  & .flight-status {
+    font-weight: 800;
+  }
+
+  & .flight-number {
+    color: var(--color-accent);
+  }
+
+  & .flight-destination {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+
+  & .flight-status {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+}
