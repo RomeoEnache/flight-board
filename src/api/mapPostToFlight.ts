@@ -55,10 +55,10 @@ function mapPostToFlight({ id, userId, title }: Post): Flight {
 function deriveScheduledDepartureTime(id: number): string {
   const intervalIndex = id % SCHEDULE_INTERVALS_PER_DAY;
   const intervalOffset = intervalIndex * SCHEDULE_INTERVAL_MINUTES;
-  const randomMinuteOffset = (id * 13 + 7) % SCHEDULE_INTERVAL_MINUTES;
+  const minuteJitter = (id * 13 + 7) % SCHEDULE_INTERVAL_MINUTES;
   const scheduleStart = new Date(SCHEDULE_START);
   const departureTime = new Date(
-    scheduleStart.getTime() + (intervalOffset + randomMinuteOffset) * 60_000,
+    scheduleStart.getTime() + (intervalOffset + minuteJitter) * 60_000,
   );
 
   return departureTime.toISOString();

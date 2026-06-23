@@ -3,11 +3,9 @@ import { mapPostsToFlights, parsePosts } from "./mapPostToFlight";
 
 const POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
 
-export type FlightLoadRequest = {
+export type FlightLoader = (request: {
   signal: AbortSignal;
-};
-
-export type FlightLoader = (request: FlightLoadRequest) => Promise<Flight[]>;
+}) => Promise<Flight[]>;
 
 export const fetchFlights: FlightLoader = async ({ signal }) => {
   const response = await fetch(POSTS_URL, { signal });
