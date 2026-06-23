@@ -53,11 +53,14 @@ npm run lint
 
 ### What I Would Do Differently With More Time
 
-With more time, I would add a E2E test suite covering the core loading,
-refresh, stale-data, and filtering flows. I would also make the time model more
-explicit by using an airport-local date/time reference instead of relying on
-viewer-local formatting. For larger datasets, I would explore virtualization or
-pagination so the board remains responsive under heavier payloads. Finally, I
-would move the failure simulation behind a dev-only flag so it can be
-tree-shaken from production builds, and expand it to cover more failure cases such as 
-slow responses, malformed payloads, HTTP errors, and aborted requests.
+- Add end-to-end tests covering the core loading, refresh, stale-data,
+  and filtering flows.
+- Make the time model more explicit by using an airport-local date/time
+  reference rather than relying on viewer formatting.
+- Explore virtualization or pagination so the board stays responsive under
+  heavier payloads.
+- Add responsive design so the board works well on mobile and smaller
+  screens, not just desktop.
+- Move the failure simulation behind a dev-only flag so it can be tree-shaken
+  from production builds, and expand it to cover more failure cases such as malformed 
+  payloads.

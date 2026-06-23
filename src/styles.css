@@ -179,7 +179,7 @@ button {
 
 .board {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(28.75rem, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(30rem, 100%), 1fr));
   gap: var(--space-5);
   align-items: start;
   margin-top: var(--space-7);
@@ -203,7 +203,7 @@ button {
   & .column-captions,
   & .row {
     display: grid;
-    grid-template-columns: 3.2rem 3.8rem minmax(8rem, 1fr) 3.8rem 3.2rem 5.6rem;
+    grid-template-columns: 3rem 4rem minmax(0, 1fr) 4rem 3rem 5rem;
     gap: var(--space-3);
     align-items: center;
     padding: var(--space-2) var(--space-5);
